@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 /*
 Copyright (c) 2016 Sam Bloomberg
@@ -289,6 +289,11 @@ namespace ECS
 	*
 	* Systems often will respond to events by subclassing EventSubscriber. You may use configure() to subscribe to events,
 	* but remember to unsubscribe in unconfigure().
+	* 
+	* 엔티티에 작용하는 시스템. 일반적으로, 이것은 World::each()를 사용하여 엔티티의 하위 집합에 작용합니다.
+	*
+	* 시스템은 종종 EventSubscriber의 서브클래스를 만들어 이벤트에 반응합니다. configure()를 사용하여 이벤트에 구독할 수 있지만,
+	* unconfigure()에서 구독을 취소해야 한다는 것을 기억하십시오.
 	*/
 	class EntitySystem
 	{
@@ -297,6 +302,7 @@ namespace ECS
 
 		/**
 		* Called when this system is added to a world.
+		* 이 시스템이 세계에 추가될 때 호출됩니다.
 		*/
 		virtual void configure(World* world)
 		{
@@ -312,6 +318,9 @@ namespace ECS
 		/**
 		* Called when World::tick() is called. See ECS_TICK_TYPE at the top of this file for more
 		* information about passing data to tick.
+		* 
+		* World::tick()이 호출될 때 호출됩니다. 
+		* 틱에 데이터를 전달하는 방법에 대한 자세한 정보는 이 파일 상단의 ECS_TICK_TYPE을 참조하십시오.
 		*/
 #ifdef ECS_TICK_TYPE_VOID
 		virtual void tick(World* world)
